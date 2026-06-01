@@ -6,6 +6,7 @@ from torchvision import transforms
 from typing import Dict
 import glob
 import numpy as np
+import pickle
 
 
 
@@ -54,7 +55,7 @@ def param_size_BM(model: torch.nn.Module, trainable_only: bool = False) -> Dict[
     }
 
 def dataset_preprocess(obj_list, base_path='./', 
-                       ranking_base='gemma27b_results',
+                       ranking_base='gemma27b_preferences',
                        ratios=[800, 100, 100]):
     
     if ratios == None: # for human evaluation
@@ -66,7 +67,7 @@ def dataset_preprocess(obj_list, base_path='./',
             pair2_list += sorted(glob.glob(f'{base_path}/{obj}/*_1.png'))
             if ranking_base != None:
                 ranking_list = torch.cat((ranking_list,
-                                          torch.tensor(np.load(f'{base_path}/{ranking_base}_{obj}.npy'), 
+                                          torch.tensor(pickle.load(open(f'{base_path}/{ranking_base}_{obj}.pkl', 'rb')), 
                                                        dtype=torch.long)), dim=1)
     else:
         pair1_list = {'train': [], 'valid': [], 'test': []}
@@ -77,7 +78,7 @@ def dataset_preprocess(obj_list, base_path='./',
         for obj in obj_list:
             x1_list = sorted(glob.glob(f'{base_path}/{obj}/*_0.png'))
             x2_list = sorted(glob.glob(f'{base_path}/{obj}/*_1.png'))
-            obj_ranking = torch.tensor(np.load(f'{base_path}/{ranking_base}_{obj}_mass.npy'), dtype=torch.long)
+            obj_ranking = torch.tensor(pickle.load(open(f'{base_path}/{ranking_base}_{obj}.pkl', 'rb')), dtype=torch.long)
             
             curr = 0
             for type_, ratio in zip(['train', 'valid', 'test'], ratios):
