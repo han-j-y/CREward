@@ -1,0 +1,11 @@
+# Tested with Python 3.13.9 and CUDA 12.9 (NVIDIA).
+# Install PyTorch with CUDA from https://pytorch.org if the default wheel does not match your GPU driver.
+
+torch==2.8.0
+torchvision==0.23.0
+transformers==4.56.0
+accelerate==1.12.0
+huggingface-hub==0.36.0
+pillow==12.0.0
+numpy==2.3.5
+matplotlib==3.10.7
