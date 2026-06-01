@@ -16,21 +16,21 @@ def make_dir(path):
 
 def param_size_BM(model: torch.nn.Module, trainable_only: bool = False) -> Dict[str, float]:
     """
-    모델 파라미터 개수를 B(십억), M(백만) 단위로 반환.
-    추가로 파라미터 메모리 사용량도 bytes/MB/GB로 함께 제공.
+    Return parameter counts in billions (B) and millions (M).
+    Also reports parameter memory usage in bytes, MB, and GB.
 
     Args:
         model: torch.nn.Module
-        trainable_only: True면 requires_grad=True인 파라미터만 집계
+        trainable_only: If True, count only parameters with requires_grad=True.
 
     Returns:
         {
-          "B": float,          # 파라미터 개수(십억 단위)
-          "M": float,          # 파라미터 개수(백만 단위)
-          "params": int,       # 파라미터 개수(정수)
-          "bytes": int,        # 파라미터 메모리 총 바이트 수 (dtype 반영)
-          "MB": float,         # bytes를 1024^2로 나눈 값
-          "GB": float          # bytes를 1024^3로 나눈 값
+          "B": float,          # parameter count in billions
+          "M": float,          # parameter count in millions
+          "params": int,       # raw parameter count
+          "bytes": int,        # total parameter memory in bytes (by dtype)
+          "MB": float,         # bytes / 1024^2
+          "GB": float          # bytes / 1024^3
         }
     """
     if trainable_only:
@@ -38,10 +38,10 @@ def param_size_BM(model: torch.nn.Module, trainable_only: bool = False) -> Dict[
     else:
         params = list(model.parameters())
 
-    # 총 파라미터 개수
+    # Total parameter count
     total_params = sum(p.numel() for p in params)
 
-    # dtype이 다를 수 있으므로 개별 element_size를 곱해 총 바이트 수 계산
+    # Sum element_size per tensor to handle mixed dtypes
     total_bytes = sum(p.numel() * p.element_size() for p in params)
 
     return {

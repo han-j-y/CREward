@@ -2,9 +2,17 @@
 
 **Official PyTorch implementation of the CVPR 2026 paper *CREward: A Type-Specific Creativity Reward Model*.**
 
-[Paper](#) | [Project Page](#) | [arXiv](#) | [Dataset](https://huggingface.co/datasets/hanjy/CREBench)
+[Paper](https://arxiv.org/pdf/2511.19995) | [Project Page](https://han-j-y.github.io/creward_prj/) | [arXiv](https://arxiv.org/abs/2511.19995) | [Dataset](https://huggingface.co/datasets/hanjy/CREBench)
 
 **Jiyeon Han**, **Ali Mahdavi-Amiri**, **Hao Zhang**, **Haedong Jeong**
+
+---
+
+## Abstract 
+
+Creativity is a complex phenomenon. When it comes to representing and assessing creativity, treating it as a single undifferentiated quantity would appear naive and underwhelming. In this work, we learn the \emph{first type-specific creativity reward model}, coined CREward, which spans three creativity ``axes," geometry, material, and texture, to allow us to view creativity through the lens of the image formation pipeline. To build our reward model, we first conduct a human benchmark evaluation to capture human perception of creativity for each type across various creative images. We then analyze the correlation between human judgments and predictions by large vision-language models (LVLMs), confirming that LVLMs exhibit strong alignment with human perception. Building on this observation, we collect LVLM-generated labels to train our CREward model that is applicable to both evaluation and generation of creative images. We explore three applications of CREward: creativity assessment, explainable creativity, and creative sample acquisition for both human design inspiration and guiding creative generation through low-rank adaptation.
+
+![image](./main.png)
 
 ---
 
