@@ -15,9 +15,12 @@
 [![Dataset](https://img.shields.io/badge/Dataset-CREBench-FFD21E?logo=huggingface&logoColor=black)](https://huggingface.co/datasets/hanjy/CREBench)
 
 <br>
-</div>
 
 Official PyTorch implementation of **CREward**, published in CVPR 2026.
+
+
+</div>
+
 
 
 
