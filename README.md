@@ -2,19 +2,19 @@
 
 # CREward: A Type-Specific Creativity Reward Model
 
-[![Paper](https://img.shields.io/badge/Paper-PDF-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/pdf/2511.19995)
-[![Project Page](https://img.shields.io/badge/Project-Page-4285F4?logo=googlechrome&logoColor=white)](https://han-j-y.github.io/creward_prj/)
-[![Dataset](https://img.shields.io/badge/Dataset-CREBench-FFD21E?logo=huggingface&logoColor=black)](https://huggingface.co/datasets/hanjy/CREBench)
 
 <br>
 
-**Official PyTorch implementation**
+**Official PyTorch implementation of CREward, published in CVPR 2026.**
 
 <br>
 
 **Jiyeon Han** · **Ali Mahdavi-Amiri** · **Hao Zhang** · **Haedong Jeong**
 
 <br>
+[![Paper](https://img.shields.io/badge/Paper-PDF-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/pdf/2511.19995)
+[![Project Page](https://img.shields.io/badge/Project-Page-4285F4?logo=googlechrome&logoColor=white)](https://han-j-y.github.io/creward_prj/)
+[![Dataset](https://img.shields.io/badge/Dataset-CREBench-FFD21E?logo=huggingface&logoColor=black)](https://huggingface.co/datasets/hanjy/CREBench)
 
 </div>
 
@@ -132,41 +132,13 @@ huggingface-cli download jhan/CREward siglip-gemma3/reward_head_best.ckpt --loca
 
 | `backbone` | Encoder | Local reward head | Download |
 |------------|---------|-------------------|----------|
-| `siglip-gemma3` | [Gemma-3-4B-IT](https://huggingface.co/google/gemma-3-4b-it) vision tower (default) | `ckpt/siglip-gemma3/reward_head_best.ckpt` | [reward head](https://huggingface.co/jhan/CREward/blob/main/siglip-gemma3/reward_head_best.ckpt) |
-| `siglip2` | [SigLIP 2 SO400M](https://huggingface.co/google/siglip2-so400m-patch14-384) | `ckpt/siglip2/reward_head_best.ckpt` | [reward head](https://huggingface.co/jhan/CREward/blob/main/siglip2/reward_head_best.ckpt) |
-| `vgg16` | VGG16 (ImageNet via `torchvision`) | `ckpt/vgg16/reward_head_best.ckpt` | [reward head](https://huggingface.co/jhan/CREward/blob/main/vgg16/reward_head_best.ckpt) |
-| `clip` | [CLIP ViT-L/14](https://huggingface.co/openai/clip-vit-large-patch14) | `ckpt/clip/reward_head_best.ckpt` | [reward head](https://huggingface.co/jhan/CREward/blob/main/clip/reward_head_best.ckpt) |
-| `dreamsim` | [DreamSim](https://github.com/ssundaram21/dreamsim) | `ckpt/dreamsim/reward_head_best.ckpt` | [reward head](https://huggingface.co/jhan/CREward/blob/main/dreamsim/reward_head_best.ckpt) |
-| `dino3` | [DINOv3 ViT-H/16+](https://huggingface.co/facebook/dinov3-vith16plus-pretrain-lvd1689m) | `ckpt/dino3/reward_head_best.ckpt` | [reward head](https://huggingface.co/jhan/CREward/blob/main/dino3/reward_head_best.ckpt) |
+| `siglip-gemma3` | [Gemma-3-4B-IT](https://huggingface.co/google/gemma-3-4b-it) vision tower (default) | `ckpt/siglip-gemma3/reward_head_best.ckpt` | [link](https://huggingface.co/jhan/CREward/blob/main/siglip-gemma3/reward_head_best.ckpt) |
+| `siglip2` | [SigLIP 2 SO400M](https://huggingface.co/google/siglip2-so400m-patch14-384) | `ckpt/siglip2/reward_head_best.ckpt` | [link](https://huggingface.co/jhan/CREward/blob/main/siglip2/reward_head_best.ckpt) |
+| `vgg16` | VGG16 (ImageNet via `torchvision`) | `ckpt/vgg16/reward_head_best.ckpt` | [link](https://huggingface.co/jhan/CREward/blob/main/vgg16/reward_head_best.ckpt) |
+| `clip` | [CLIP ViT-L/14](https://huggingface.co/openai/clip-vit-large-patch14) | `ckpt/clip/reward_head_best.ckpt` | [link](https://huggingface.co/jhan/CREward/blob/main/clip/reward_head_best.ckpt) |
+| `dreamsim` | [DreamSim](https://github.com/ssundaram21/dreamsim) | `ckpt/dreamsim/reward_head_best.ckpt` | [link](https://huggingface.co/jhan/CREward/blob/main/dreamsim/reward_head_best.ckpt) |
+| `dino3` | [DINOv3 ViT-H/16+](https://huggingface.co/facebook/dinov3-vith16plus-pretrain-lvd1689m) | `ckpt/dino3/reward_head_best.ckpt` | [link](https://huggingface.co/jhan/CREward/blob/main/dino3/reward_head_best.ckpt) |
 
-Each backbone needs the matching reward head; vision weights for non-VGG encoders are fetched automatically by `transformers` / `dreamsim` on first use.
-
----
-
-
-
-## Repository Structure
-
-```
-.
-├── README.md
-├── requirements.txt
-├── CREward_eg.ipynb
-├── ckpt/
-│   └── siglip-gemma3/
-│       └── reward_head_best.ckpt
-├── src/
-│   ├── __init__.py
-│   ├── models.py          # CreativityReward
-│   └── utils.py           # CreRewardDataset, dataset_preprocess
-└── test_images/
-```
-
-**Import:**
-
-```python
-from src.models import CreativityReward
-```
 
 ---
 
