@@ -5,16 +5,18 @@
 
 <br>
 
-**Official PyTorch implementation of CREward, published in CVPR 2026.**
-
-<br>
 
 **Jiyeon Han** · **Ali Mahdavi-Amiri** · **Hao Zhang** · **Haedong Jeong**
 
 <br>
+
 [![Paper](https://img.shields.io/badge/Paper-PDF-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/pdf/2511.19995)
 [![Project Page](https://img.shields.io/badge/Project-Page-4285F4?logo=googlechrome&logoColor=white)](https://han-j-y.github.io/creward_prj/)
 [![Dataset](https://img.shields.io/badge/Dataset-CREBench-FFD21E?logo=huggingface&logoColor=black)](https://huggingface.co/datasets/hanjy/CREBench)
+
+<br>
+Official PyTorch implementation of **CREward**, published in CVPR 2026.
+
 
 </div>
 
