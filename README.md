@@ -110,14 +110,14 @@ Run [`CREward_eg.ipynb`](CREward_eg.ipynb) for an end-to-end example: load the m
 
 ### Pre-trained Models
 
-Vision backbones are loaded from Hugging Face at runtime. The trainable **reward head** must be placed locally as follows:
+Vision backbones are loaded from Hugging Face at runtime. The trainable **reward head** must be placed under `ckpt/<backbone>/reward_head_best.ckpt` (see table below).
 
-| Component | Path | Description |
-|-----------|------|-------------|
-| Reward head (Gemma-SigLIP) | `ckpt/siglip-gemma3/reward_head_best.ckpt` | CREward head trained with `siglip-gemma3` backbone |
-| Vision backbone | — | `google/gemma-3-4b-it` (auto-downloaded via `transformers`) |
+Reward-head checkpoints are hosted on [jhan/CREward](https://huggingface.co/jhan/CREward/tree/main). Download with `huggingface-cli` or your browser, then copy into `ckpt/`:
 
-Download `reward_head_best.ckpt` from the [GitHub Releases](https://github.com/<ORG>/CREward/releases) page if it is not included in your clone.
+```bash
+huggingface-cli download jhan/CREward siglip-gemma3/reward_head_best.ckpt --local-dir ckpt
+# repeat for other backbones, or download the full repo
+```
 
 **Reward dimensions** (output index order of `compute_reward`):
 
@@ -128,18 +128,18 @@ Download `reward_head_best.ckpt` from the [GitHub Releases](https://github.com/<
 | 2 | Texture |
 | 3 | Overall |
 
-**Optional vision backbones** supported in code (`CreativityReward(..., backbone=...)`):
+**Vision backbones** supported in code (`CreativityReward(..., backbone=...)`):
 
-| `backbone` | Encoder |
-|------------|---------|
-| `siglip-gemma3` | Gemma-3-4B-IT vision tower (default) |
-| `siglip2` | SigLIP 2 SO400M |
-| `vgg16` | VGG16 |
-| `clip` | CLIP ViT-L/14 |
-| `dreamsim` | DreamSim |
-| `dino3` | DINOv3 ViT-H/16+ |
+| `backbone` | Encoder | Local reward head | Download |
+|------------|---------|-------------------|----------|
+| `siglip-gemma3` | [Gemma-3-4B-IT](https://huggingface.co/google/gemma-3-4b-it) vision tower (default) | `ckpt/siglip-gemma3/reward_head_best.ckpt` | [reward head](https://huggingface.co/jhan/CREward/blob/main/siglip-gemma3/reward_head_best.ckpt) |
+| `siglip2` | [SigLIP 2 SO400M](https://huggingface.co/google/siglip2-so400m-patch14-384) | `ckpt/siglip2/reward_head_best.ckpt` | [reward head](https://huggingface.co/jhan/CREward/blob/main/siglip2/reward_head_best.ckpt) |
+| `vgg16` | VGG16 (ImageNet via `torchvision`) | `ckpt/vgg16/reward_head_best.ckpt` | [reward head](https://huggingface.co/jhan/CREward/blob/main/vgg16/reward_head_best.ckpt) |
+| `clip` | [CLIP ViT-L/14](https://huggingface.co/openai/clip-vit-large-patch14) | `ckpt/clip/reward_head_best.ckpt` | [reward head](https://huggingface.co/jhan/CREward/blob/main/clip/reward_head_best.ckpt) |
+| `dreamsim` | [DreamSim](https://github.com/ssundaram21/dreamsim) | `ckpt/dreamsim/reward_head_best.ckpt` | [reward head](https://huggingface.co/jhan/CREward/blob/main/dreamsim/reward_head_best.ckpt) |
+| `dino3` | [DINOv3 ViT-H/16+](https://huggingface.co/facebook/dinov3-vith16plus-pretrain-lvd1689m) | `ckpt/dino3/reward_head_best.ckpt` | [reward head](https://huggingface.co/jhan/CREward/blob/main/dino3/reward_head_best.ckpt) |
 
-Each backbone requires a reward head trained for that encoder; only the Gemma-SigLIP checkpoint is provided above.
+Each backbone needs the matching reward head; vision weights for non-VGG encoders are fetched automatically by `transformers` / `dreamsim` on first use.
 
 ---
 
@@ -150,9 +150,7 @@ Each backbone requires a reward head trained for that encoder; only the Gemma-Si
 ```
 .
 ├── README.md
-├── environment.yml
 ├── requirements.txt
-├── requirements-optional.txt
 ├── CREward_eg.ipynb
 ├── ckpt/
 │   └── siglip-gemma3/
