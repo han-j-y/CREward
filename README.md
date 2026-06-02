@@ -47,14 +47,34 @@ This repository provides:
 
 ### Setup
 
+**Requirements:** Python 3.10+, NVIDIA GPU with CUDA (recommended for the default backbone).
+
+**Tested stack:** Python 3.13.9 · PyTorch 2.8.0 (CUDA 12.9) · see [`requirements.txt`](requirements.txt)
+
+Clone the repository:
+
 ```bash
 git clone https://github.com/han-j-y/CREward.git
 cd CREward
+```
 
-# PyTorch with CUDA: use https://pytorch.org/get-started/locally/ if needed, then:
+#### Optional: Conda (recommended)
+
+```bash
+conda create -n creward python=3.13 -y
+conda activate creward
+```
+
+
+
+#### Install pip only
+
+```bash
 pip install -r requirements.txt
 ```
 
+
+Run notebooks and scripts from the **repository root** (the folder containing `src/` and `ckpt/`).
 
 ### Inference
 
@@ -130,6 +150,7 @@ Each backbone requires a reward head trained for that encoder; only the Gemma-Si
 ```
 .
 ├── README.md
+├── environment.yml
 ├── requirements.txt
 ├── requirements-optional.txt
 ├── CREward_eg.ipynb
